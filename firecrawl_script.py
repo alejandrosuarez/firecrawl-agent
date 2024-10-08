@@ -7,13 +7,16 @@ from firecrawl import FirecrawlApp
 load_dotenv()
 
 def get_domain(url):
-    """Extract the domain name from the URL without the top-level domain"""
-    parsed_url = urlparse(url)
-    domain_parts = parsed_url.netloc.split('.')
+    """Extract the domain name from the URL"""
+    url = url.split('?')[0]  # Remove the query string
+    domain_parts = url.split('.')
     if domain_parts[0] == 'www':
-        domain = domain_parts[1]
+        if len(domain_parts) > 3:
+            domain = '.'.join(domain_parts[1:])
+        else:
+            domain = '.'.join(domain_parts[1:])
     else:
-        domain = domain_parts[0]
+        domain = '.'.join(domain_parts)
     return domain
 
 def save_content(content, filename):
