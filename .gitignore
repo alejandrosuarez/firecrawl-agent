@@ -30,3 +30,6 @@ build/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+#env
+.env
